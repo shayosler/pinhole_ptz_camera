@@ -1,5 +1,5 @@
 function [X, varargout] = to_pinhole_img_plane(x_T, x, phi, psi, a, b, lambda)
-% to_pinhole_img_plane Map a point in the global reference frame to a point
+% to_pinhole_img_plane Map points in the global reference frame to points
 % in the image plane
 %
 % Inputs:

@@ -1,8 +1,9 @@
-function [vis] = is_pt_visible(B, x, p)
-%[vis] = is_pt_visible(B, x, p) Test if a point is visible.
+function [los] = has_los(B, x, p)
+%[los] = has_los(B, x, p) Test if there is line of sight visibility to a
+%point
 %
-%   Tests if a point p is visible from a camera located at x, with pan and
-%   tilt angles psi and phi, given obstacles defined by B. 
+%   Tests if a point p is visible from a camera located at x, given 
+%   obstacles defined by B. 
 %   NOTE: this function does not test whether or not p is within the
 %   camera's FOV, it only tests whether it is occluded by obstacles
 %
@@ -19,9 +20,9 @@ function [vis] = is_pt_visible(B, x, p)
 % from x to p, and the vector from x to the point is shorter than the
 % vector from x to p
 step = .01;
-test_pts = points_along_line(p, x, .01);
+test_pts = points_along_line(p, x, step);
 
-vis = true;
+los = true;
 for n = 1:size(B, 3)
     in_obs = in_cube(test_pts, B);
     vis = ~any(in_obs);
